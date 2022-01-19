@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '2.5.2'
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+}
+
+group 'com.example.springsocial'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // junit test
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // devtools 추가
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    // web mvc 추가
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    //mysql 연동
+    implementation 'mysql:mysql-connector-java'
+    // spring data jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // Security 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // oauth
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    // jwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// build.gradle
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+dependencies {
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+}
